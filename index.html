@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omega Ilijevich — Journalist &amp; Radio Reporter</title>
+  <style>
+    /* Google Fonts: Newsreader (newspaper serif) & Playfair Display (masthead headline serif) */
+    @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,600&display=swap');
+
+    /* ==========================================================
+       MOBILE-FIRST BASE STYLES (Applies to phones by default)
+       ========================================================== */
+    :root {
+      /* Authentic Newspaper / Editorial Typography */
+      --font-headline: 'Playfair Display', 'Newsreader', Georgia, 'Times New Roman', serif;
+      --font-body: 'Newsreader', Georgia, 'Times New Roman', Cambria, serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --color-bg: #fdfcfe;          /* Clean broadsheet paper wash */
+      --color-surface: #ffffff;     /* White paper surface */
+      --color-text: #1a1622;        /* Deep ink black */
+      --color-text-muted: #534a5d;  /* Muted charcoal/plum */
+      --color-border: #e6dfed;      /* Delicate broadsheet hairline rule */
+      --color-accent: #6b21a8;      /* Editorial purple ink */
+      --color-accent-hover: #4c1d95;/* Deep purple hover */
+      --color-dark: #240a34;        /* Dark broadsheet masthead ink */
+      --color-source: #14532d;
+      --color-source-bg: #dcfce7;
+      --color-need-source: #991b1b;
+      --color-need-source-bg: #fee2e2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.65;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container: Mobile padded */
+    .container {
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Need Source Flags */
+    .need-source {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-family: var(--font-sans);
+      background-color: var(--color-need-source-bg);
+      color: var(--color-need-source);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      margin-left: 6px;
+    }
+
+    /* Header & Navigation: Broadsheet Masthead with Big Name & Clickable Subheadings Menu */
+    .site-header {
+      background-color: var(--color-surface);
+      border-top: 3px solid var(--color-dark);
+      border-bottom: 2px solid var(--color-dark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px 18px 14px;
+      gap: 12px;
+    }
+
+    .logo {
+      font-family: var(--font-headline);
+      font-size: 2.4rem; /* Big name at the top */
+      font-weight: 900;
+      color: var(--color-dark);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      display: block;
+    }
+
+    .site-nav {
+      width: 100%;
+      border-top: 1px solid var(--color-border);
+      padding-top: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      font-family: var(--font-sans);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 7px 14px;
+      border-radius: 3px;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--color-accent);
+      background-color: #f3e8ff;
+      border-color: #d8b4fe;
+    }
+
+    /* Hero Section: Broadsheet Front Page */
+    .hero {
+      padding: 44px 0 36px;
+      border-bottom: 2px solid var(--color-dark);
+    }
+
+    .beat-tag {
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: 10px;
+    }
+
+    .headline {
+      font-family: var(--font-headline);
+      font-size: 2.1rem;
+      line-height: 1.18;
+      color: var(--color-dark);
+      margin-bottom: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .subheadline {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      line-height: 1.55;
+      margin-bottom: 24px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      border-radius: 2px; /* Clean editorial angles instead of bubbly pills */
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      cursor: pointer;
+      min-height: 44px; /* Accessible tap target */
+    }
+
+    .btn-primary {
+      background-color: var(--color-dark);
+      color: #ffffff;
+      border: 1px solid var(--color-dark);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--color-dark);
+      border: 1px solid var(--color-dark);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-dark);
+      color: #ffffff;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-family: var(--font-headline);
+      font-size: 1.75rem;
+      color: var(--color-dark);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--color-dark);
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    /* Selected Work Section: Elegant Newspaper Flow (No Spreadsheet Grid) */
+    .work-section {
+      padding: 40px 0 48px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .articles-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .article-card {
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      border-radius: 0;
+      padding: 24px 0;
+      box-shadow: none;
+    }
+
+    .article-card:last-child {
+      border-bottom: none;
+    }
+
+    .article-card.featured-card {
+      border-left: none;
+      padding-top: 10px;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .publication {
+      color: var(--color-accent);
+      font-weight: 800;
+    }
+
+    .badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-audio {
+      background-color: #f3e8ff;
+      color: #581c87;
+      border: 1px solid #d8b4fe;
+    }
+
+    .badge-print {
+      background-color: #f1f0f4;
+      color: #3b3543;
+      border: 1px solid #ddd9e3;
+    }
+
+    .badge-web {
+      background-color: #ede9fe;
+      color: #6b21a8;
+      border: 1px solid #c4b5fd;
+    }
+
+    .date {
+      color: #6b6375;
+    }
+
+    .article-card h3 {
+      font-family: var(--font-headline);
+      font-size: 1.45rem;
+      line-height: 1.25;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .article-card h3 a {
+      color: var(--color-dark);
+      text-decoration: none;
+    }
+
+    .article-card h3 a:hover {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+    }
+
+    .dek {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.08rem;
+      color: var(--color-text-muted);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .excerpt {
+      font-family: var(--font-body);
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .read-link {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--color-accent);
+      text-decoration: none;
+      padding: 4px 0;
+    }
+
+    .read-link:hover {
+      color: var(--color-dark);
+      text-decoration: underline;
+    }
+
+    /* About Section: Classic Editorial Column */
+    .about-section {
+      padding: 40px 0 48px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .about-content p {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      color: #241c2c;
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .outlets-box {
+      margin-top: 24px;
+      padding: 16px 0;
+      background-color: transparent;
+      border: none;
+      border-top: 1px solid var(--color-dark);
+      border-bottom: 1px solid var(--color-border);
+      border-radius: 0;
+    }
+
+    .outlets-heading {
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      color: var(--color-dark);
+    }
+
+    .outlets-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 1.02rem;
+    }
+
+    /* Contact Section: Broadsheet Direct Directory */
+    .contact-section {
+      padding: 40px 0 60px;
+    }
+
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .contact-list li {
+      font-family: var(--font-body);
+      font-size: 1.08rem;
+    }
+
+    .contact-list strong {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-muted);
+      margin-right: 6px;
+    }
+
+    .contact-list a {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+    }
+
+    .contact-list a:hover {
+      color: var(--color-dark);
+    }
+
+    /* Footer: Classic Editorial Colophon */
+    .site-footer {
+      border-top: 1px solid var(--color-border);
+      padding: 24px 0;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: #777777;
+    }
+
+    /* ==========================================================
+       RESUME PAGE VIEW (Mobile-First)
+       ========================================================== */
+    .resume-view {
+      padding: 24px 0 60px;
+    }
+
+    .resume-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .resume-paper {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 28px 20px;
+      box-shadow: 0 2px 14px rgba(36, 10, 52, 0.04);
+    }
+
+    .resume-header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--color-dark);
+    }
+
+    .resume-name {
+      font-family: var(--font-headline);
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--color-dark);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .resume-contact-info {
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      color: var(--color-text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .resume-contact-info a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    .resume-section {
+      margin-bottom: 24px;
+    }
+
+    .resume-section-title {
+      font-family: var(--font-headline);
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--color-dark);
+      border-bottom: 1.5px solid var(--color-dark);
+      padding-bottom: 4px;
+      margin-bottom: 14px;
+    }
+
+    .resume-entry {
+      margin-bottom: 18px;
+    }
+
+    .resume-entry-header {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 4px;
+    }
+
+    .resume-org {
+      font-family: var(--font-headline);
+      font-weight: 700;
+      color: var(--color-dark);
+      font-size: 1.05rem;
+    }
+
+    .resume-role {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--color-text-muted);
+      font-size: 0.96rem;
+    }
+
+    .resume-meta {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: #6b7280;
+      font-weight: 600;
+    }
+
+    .resume-bullets {
+      margin-left: 20px;
+      margin-top: 6px;
+      list-style-type: disc;
+    }
+
+    .resume-bullets li {
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      color: #2b2b2b;
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================
+       LARGER SCREENS (Tablet & Desktop Enhancements)
+       ========================================================== */
+    @media (min-width: 640px) {
+      body {
+        font-size: 19px;
+      }
+
+      .container {
+        padding: 0 32px;
+      }
+
+      .header-container {
+        padding: 28px 32px 18px;
+        gap: 16px;
+      }
+
+      .logo {
+        font-size: 3.5rem; /* Big, commanding broadsheet masthead name */
+        letter-spacing: -0.03em;
+      }
+
+      .nav-links {
+        gap: 24px;
+      }
+
+      .nav-links a {
+        font-size: 0.92rem;
+        letter-spacing: 0.1em;
+        padding: 8px 18px;
+      }
+
+      .hero {
+        padding: 68px 0 54px;
+      }
+
+      .headline {
+        font-size: 2.85rem;
+        line-height: 1.15;
+      }
+
+      .hero-buttons {
+        flex-direction: row;
+        gap: 16px;
+      }
+
+      .btn {
+        display: inline-flex;
+        width: auto;
+      }
+
+      .section-title {
+        font-size: 2.1rem;
+      }
+
+      .article-card h3 {
+        font-size: 1.65rem;
+      }
+
+      .work-section,
+      .about-section,
+      .contact-section {
+        padding: 60px 0;
+      }
+
+      .outlets-items {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+
+      /* Resume Desktop */
+      .resume-view {
+        padding: 44px 0 80px;
+      }
+
+      .resume-actions {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .resume-paper {
+        padding: 48px 52px;
+      }
+
+      .resume-name {
+        font-size: 2.4rem;
+      }
+
+      .resume-entry-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+    }
+
+    /* ==========================================================
+       PRINT STYLESHEET (Clean, black & white, printable PDF view)
+       ========================================================== */
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10pt !important;
+        line-height: 1.35 !important;
+      }
+
+      .site-header,
+      .site-footer,
+      #portfolio-view,
+      .resume-actions,
+      .source-citation,
+      .need-source {
+        display: none !important;
+      }
+
+      #resume-view {
+        display: block !important;
+        padding: 0 !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .resume-paper {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+
+      .resume-header {
+        border-bottom: 2px solid #000000 !important;
+        margin-bottom: 14px !important;
+        padding-bottom: 10px !important;
+      }
+
+      .resume-name {
+        color: #000000 !important;
+        font-size: 18pt !important;
+      }
+
+      .resume-contact-info,
+      .resume-contact-info a {
+        color: #111111 !important;
+        font-size: 9pt !important;
+      }
+
+      .resume-section {
+        margin-bottom: 14px !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .resume-section-title {
+        color: #000000 !important;
+        border-bottom: 1px solid #000000 !important;
+        font-size: 10.5pt !important;
+        margin-bottom: 6px !important;
+        padding-bottom: 2px !important;
+      }
+
+      .resume-entry {
+        margin-bottom: 8px !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .resume-entry-header {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: baseline !important;
+      }
+
+      .resume-org {
+        color: #000000 !important;
+        font-size: 9.5pt !important;
+      }
+
+      .resume-role {
+        color: #222222 !important;
+        font-size: 9pt !important;
+      }
+
+      .resume-meta {
+        color: #333333 !important;
+        font-size: 8.5pt !important;
+      }
+
+      .resume-bullets {
+        margin-top: 2px !important;
+        margin-left: 16px !important;
+      }
+
+      .resume-bullets li {
+        color: #000000 !important;
+        font-size: 8.8pt !important;
+        line-height: 1.28 !important;
+        margin-bottom: 2px !important;
+      }
+
+      @page {
+        margin: 0.5in;
+        size: letter portrait;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar: Broadsheet Masthead with Big Name & Clickable Subheadings Menu -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#" class="logo">Omega Ilijevich</a>
+      <nav class="site-nav">
+        <ul class="nav-links">
+          <li><a href="#about" id="nav-about">About</a></li>
+          <li><a href="#work" id="nav-work">Selected Work</a></li>
+          <li><a href="#resume" id="nav-resume">Resume</a></li>
+          <li><a href="#contact" id="nav-contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       VIEW 1: MAIN PORTFOLIO
+       ========================================================== -->
+  <main id="portfolio-view">
+
+    <!-- About Section (Placed at top of page) -->
+    <section id="about" class="about-section about-top">
+      <div class="container">
+        <div class="about-content">
+          <h2 class="section-title">About</h2>
+          <p>
+            Omega Ilijevich is a freelance journalist based in Chicago, Illinois. Her beats include local politics, lifestyle and culture.
+          </p>
+          <p>
+            She graduated from the University of Virginia in 2023, and is currently pursuing a Master's in Journalism from Northwestern University's Medill School.
+          </p>
+          <p>
+            Her work has appeared in print in <em>The Cavalier Daily</em> and <em>Washingtonian Magazine</em> and over the air at <em>WMRA</em>, <em>WTJU</em> and <em>VPM News</em>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Work Section -->
+    <section id="work" class="work-section">
+      <div class="container">
+        <h2 class="section-title">Selected Work</h2>
+
+        <div class="articles-grid">
+
+          <!-- Story 1: July 15, 2026 -->
+          <article class="article-card featured-card">
+            <div class="card-meta">
+              <span class="publication">WMRA</span>
+              <span class="badge badge-audio">Radio</span>
+              <span class="date">July 15, 2026</span>
+            </div>
+            <h3>
+              <a href="https://www.wmra.org/2026-07-15/youth-step-into-shenandoah-valley-line-dance-club" target="_blank" rel="noopener noreferrer">
+                Youth step into Shenandoah Valley line dance club
+              </a>
+            </h3>
+            <p class="dek">
+              A Harrisonburg line dancing club sees an influx of young attendees.
+            </p>
+            <a href="https://www.wmra.org/2026-07-15/youth-step-into-shenandoah-valley-line-dance-club" target="_blank" rel="noopener noreferrer" class="read-link">
+              Listen &amp; Read at WMRA &rarr;
+            </a>
+          </article>
+
+          <!-- Story 2: March 24, 2026 -->
+          <article class="article-card">
+            <div class="card-meta">
+              <span class="publication">Washingtonian</span>
+              <span class="badge badge-print">Print</span>
+              <span class="badge badge-web">Web</span>
+              <span class="date">March 24, 2026</span>
+            </div>
+            <h3>
+              <a href="https://washingtonian.com/2026/03/24/neighborhood-guide-things-to-do-in-arlington/" target="_blank" rel="noopener noreferrer">
+                Neighborhood Guide: Things to Do in Arlington
+              </a>
+            </h3>
+            <p class="dek">
+              A list of new things to do in Arlington, Virginia, originally published in the March issue of Washingtonian Magazine. This was a collaborative piece, and I wrote the "Shop" and "Things to Do" portions.
+            </p>
+            <a href="https://washingtonian.com/2026/03/24/neighborhood-guide-things-to-do-in-arlington/" target="_blank" rel="noopener noreferrer" class="read-link">
+              Read at Washingtonian &rarr;
+            </a>
+          </article>
+
+          <!-- Story 3: October 2024 -->
+          <article class="article-card">
+            <div class="card-meta">
+              <span class="publication">Washingtonian Magazine</span>
+              <span class="badge badge-print">Print</span>
+              <span class="date">October 2024</span>
+            </div>
+            <h3>
+              <a href="clips/back-on-course.pdf" target="_blank">Back on Course</a>
+            </h3>
+            <p class="dek">
+              <em>National Links Trust is renovating and running the District’s public links—and creating some controversy</em>
+            </p>
+            <a href="clips/back-on-course.pdf" target="_blank" class="read-link">
+              View Magazine Clip (PDF) &rarr;
+            </a>
+          </article>
+
+          <!-- Story 4: August 12, 2024 -->
+          <article class="article-card">
+            <div class="card-meta">
+              <span class="publication">Washingtonian</span>
+              <span class="badge badge-web">Web</span>
+              <span class="date">August 12, 2024</span>
+            </div>
+            <h3>
+              <a href="https://washingtonian.com/2024/08/12/maryland-vs-virginia-who-won-more-medals-at-the-paris-olympics/" target="_blank" rel="noopener noreferrer">
+                Maryland vs. Virginia: Who Won More Medals at the Paris Olympics?
+              </a>
+            </h3>
+            <p class="dek">
+              A recap of the 2024 Paris Olympics, focusing on competitors from DC, Maryland and Virginia.
+            </p>
+            <a href="https://washingtonian.com/2024/08/12/maryland-vs-virginia-who-won-more-medals-at-the-paris-olympics/" target="_blank" rel="noopener noreferrer" class="read-link">
+              Read at Washingtonian &rarr;
+            </a>
+          </article>
+
+          <!-- Story 5: May 20, 2024 -->
+          <article class="article-card">
+            <div class="card-meta">
+              <span class="publication">Washingtonian</span>
+              <span class="badge badge-print">Print</span>
+              <span class="badge badge-web">Web</span>
+              <span class="date">May 20, 2024</span>
+            </div>
+            <h3>
+              <a href="https://washingtonian.com/2024/05/20/the-hottest-sketch-artist-at-the-trump-trial-isjake-tapper/" target="_blank" rel="noopener noreferrer">
+                The Hottest Sketch Artist at the Trump Trial Is... Jake Tapper?
+              </a>
+            </h3>
+            <p class="dek">
+              An interview with CNN's Jake Tapper about his decision to sketch images of Donald Trump's 2024 trial and his longtime love of cartoons. Originally published in the May 2024 issue of Washingtonian Magazine.
+            </p>
+            <a href="https://washingtonian.com/2024/05/20/the-hottest-sketch-artist-at-the-trump-trial-isjake-tapper/" target="_blank" rel="noopener noreferrer" class="read-link">
+              Read at Washingtonian &rarr;
+            </a>
+          </article>
+
+          <!-- Story 6: July 12, 2023 -->
+          <article class="article-card">
+            <div class="card-meta">
+              <span class="publication">VPM News</span>
+              <span class="badge badge-audio">Radio</span>
+              <span class="date">July 12, 2023</span>
+            </div>
+            <h3>
+              <a href="https://www.vpm.org/news/2023-07-12/retired-army-sergeant-firehouse-theater-sound-of-guns/" target="_blank" rel="noopener noreferrer">
+                Retired Army sergeant turns his experiences into unique musical theater
+              </a>
+            </h3>
+            <p class="dek">
+              Richmonder Jim O'Ferrell composed music while still in the Army that eventually became the original music "The Sound of Guns."
+            </p>
+            <a href="https://www.vpm.org/news/2023-07-12/retired-army-sergeant-firehouse-theater-sound-of-guns/" target="_blank" rel="noopener noreferrer" class="read-link">
+              Listen &amp; Read at VPM News &rarr;
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <ul class="contact-list">
+          <li>
+            <strong>Email:</strong> 
+            <a href="mailto:oilijevich@gmail.com">oilijevich@gmail.com</a>
+          </li>
+          <li>
+            <strong>Phone:</strong> 
+            <a href="tel:5405385561">540.538.5561</a>
+          </li>
+          <li>
+            <strong>Location:</strong> 
+            Chicago, IL
+          </li>
+          <li>
+            <strong>LinkedIn:</strong> 
+            <a href="https://www.linkedin.com/in/omega-ilijevich" target="_blank" rel="noopener noreferrer">linkedin.com/in/omega-ilijevich</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================
+       VIEW 2: RESUME PAGE (With Printable PDF layout)
+       ========================================================== -->
+  <main id="resume-view" class="resume-view" style="display: none;">
+    <div class="container">
+
+      <!-- Action bar for viewing/printing -->
+      <div class="resume-actions">
+        <a href="#" class="btn btn-secondary">&larr; Back to Portfolio</a>
+        <button onclick="window.print()" class="btn btn-primary">
+          &#128438; Print / Save as PDF
+        </button>
+      </div>
+
+      <!-- Printable Document Container -->
+      <article class="resume-paper">
+
+        <!-- Header -->
+        <header class="resume-header">
+          <h1 class="resume-name">Omega Ilijevich</h1>
+          <div class="resume-contact-info">
+            <a href="mailto:oilijevich@gmail.com">oilijevich@gmail.com</a>
+            <span>|</span>
+            <a href="tel:5405385561">540.538.5561</a>
+            <span>|</span>
+            <span>Chicago, IL</span>
+          </div>
+        </header>
+
+        <!-- Education -->
+        <section class="resume-section">
+          <h2 class="resume-section-title">
+            Education
+          </h2>
+
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">University of Virginia, College of Arts and Sciences, Charlottesville, VA</span>
+              <span class="resume-meta">Graduated May 2023</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>B.A in Political Philosophy, Policy and Law and B.A. in Media Studies</li>
+              <li>GPA: 3.96/4.0</li>
+              <li>Awards: Echols Scholars Honors Program (2019-2023), Awarded High Distinction on Undergraduate Thesis (2023), Dean’s List (2019-2023).</li>
+            </ul>
+          </div>
+
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">Northwestern University, Medill School of Journalism, Chicago, IL</span>
+              <span class="resume-meta">September 2026 - May 2027</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>M.S. in Journalism with a specialization in Magazine and Audio</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Work Experience -->
+        <section class="resume-section">
+          <h2 class="resume-section-title">
+            Work Experience
+          </h2>
+
+          <!-- Sound Opinions -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">Sound Opinions, <span class="resume-role">Audio Criticism Intern</span>, Chicago, IL</span>
+              <span class="resume-meta">September 2026 - May 2027</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Awarded competitive internship at long-running music criticism radio show/podcast as part of Medill scholarship</li>
+              <li>Contributes to radio programs, writes website content and organizes archive of 1000+ episodes by theme</li>
+            </ul>
+          </div>
+
+          <!-- Freelance Journalist -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">Freelance Journalist, <span class="resume-role">Multiple Locations</span></span>
+              <span class="resume-meta">November 2024 - Present</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Researched and documented short-form news for local outlets, including Washingtonian Magazine in DC and WMRA radio in Harrisonburg, VA</li>
+              <li>Work regularly cited in local and national newsletters, including 730DC and CityCast</li>
+              <li>Contracted to write multiple chapters for the Washington Metropolitan Transit Authority’s 50th anniversary book</li>
+            </ul>
+          </div>
+
+          <!-- Washingtonian Magazine -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">Washingtonian Magazine, <span class="resume-role">Editorial Fellow</span>, Washington, D.C.</span>
+              <span class="resume-meta">January - November 2024</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Pitched and wrote over 100 local stories for print and web, with a focus on Arts and Lifestyle</li>
+              <li>Fact-checked long-form print features for accuracy through research and follow-up interviews</li>
+              <li>Worked with editorial team to develop cover stories, plan front-of-book sections and coordinate weekly newsletters</li>
+              <li>Received two extension offers on initial internship for exceeding editorial goals</li>
+            </ul>
+          </div>
+
+          <!-- WETA PBS -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">WETA PBS, <span class="resume-role">WETA Arts Intern</span>, Washington, D.C.</span>
+              <span class="resume-meta">September - December 2023</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Researched subjects and prepared interview questions for monthly documentary program following Arts in the DC area</li>
+              <li>Provided administrative and on-set support for producers and film crews, including fact-checking and legal documentation</li>
+              <li>Found archival footage and stock materials for b-roll and cleared resources through proper avenues</li>
+            </ul>
+          </div>
+
+          <!-- Virginia Public Media -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">Virginia Public Media, <span class="resume-role">Radio/News Intern</span>, Richmond, VA</span>
+              <span class="resume-meta">May - September 2023</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Covered local and state affairs for NPR member station, with a focus on Politics and Arts/Culture</li>
+              <li>Produced and edited audio interviews for daily radio broadcast using Adobe Audition</li>
+              <li>Organized the company’s physical media collection into comprehensive digital archive</li>
+            </ul>
+          </div>
+
+          <!-- WTJU Community Radio -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">WTJU Community Radio, <span class="resume-role">Assistant Producer</span>, Charlottesville, VA</span>
+              <span class="resume-meta">May 2022 - May 2023</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Conducted and edited a series of interviews with local artists, highlighting and publicizing their work for local audiences</li>
+              <li>Provided narration, script-writing and audio editing for in-house podcasts devoted to political education</li>
+              <li>Designed and executed curriculum with a team of counselors for weekly “radio camps” for middle-aged children, focused on developing technical and creative skills</li>
+            </ul>
+          </div>
+
+          <!-- Virginia Film Festival -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">Virginia Film Festival, <span class="resume-role">Programming Intern</span>, Charlottesville, VA</span>
+              <span class="resume-meta">August - December 2022</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Acted as liaison for featured guests at the festival, designing itineraries and efficient travel arrangements</li>
+              <li>Introduced and led discussion of films at the Festival premiere</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Extracurricular Experience -->
+        <section class="resume-section">
+          <h2 class="resume-section-title">
+            Extracurricular Experience
+          </h2>
+
+          <!-- Cavalier Daily -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">Cavalier Daily Student Newspaper, <span class="resume-role">Arts and Entertainment Writer</span></span>
+              <span class="resume-meta">January 2020 - May 2023</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Composed articles on arts and culture, including national film reviews, interviews and coverage of local events</li>
+              <li>Copy edited peers’ articles for accuracy and clarity using AP style</li>
+            </ul>
+          </div>
+
+          <!-- WXTJ Student Radio -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">WXTJ Student Radio, <span class="resume-role">Disc Jockey and Website Manager</span></span>
+              <span class="resume-meta">October 2021 - May 2023</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Curated music program and operated soundboard for live radio programming</li>
+              <li>Oversaw digital editorial content and organized club website using WordPress</li>
+            </ul>
+          </div>
+
+          <!-- Yellow Journal -->
+          <div class="resume-entry">
+            <div class="resume-entry-header">
+              <span class="resume-org">Yellow Journal Comedy Newspaper, <span class="resume-role">Writer and Editor</span></span>
+              <span class="resume-meta">January 2021 - May 2023</span>
+            </div>
+            <ul class="resume-bullets">
+              <li>Worked collaboratively with other students to write, design, and publish a parody newspaper with InDesign</li>
+              <li>Edited and shared social media content and physical promotional material before biannual publication</li>
+            </ul>
+          </div>
+        </section>
+
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Omega Ilijevich. All rights reserved.</p>
+      <p style="margin-top: 6px;">Built with Antigravity, an AI tool, with information from Omega Ilijevich. Last updated 11/8/2026.</p>
+    </div>
+  </footer>
+
+  <!-- View Router Script: keeps single-file architecture intact without build tools -->
+  <script>
+    function updateRoute() {
+      var hash = window.location.hash;
+      var portfolio = document.getElementById('portfolio-view');
+      var resume = document.getElementById('resume-view');
+      var navResume = document.getElementById('nav-resume');
+      var navWork = document.getElementById('nav-work');
+      var navAbout = document.getElementById('nav-about');
+      var navContact = document.getElementById('nav-contact');
+
+      if (hash === '#resume') {
+        portfolio.style.display = 'none';
+        resume.style.display = 'block';
+        if (navResume) navResume.classList.add('active');
+        if (navWork) navWork.classList.remove('active');
+        if (navAbout) navAbout.classList.remove('active');
+        if (navContact) navContact.classList.remove('active');
+        window.scrollTo(0, 0);
+      } else {
+        resume.style.display = 'none';
+        portfolio.style.display = 'block';
+        if (navResume) navResume.classList.remove('active');
+        if (navAbout) navAbout.classList.toggle('active', hash === '#about');
+        if (navWork) navWork.classList.toggle('active', hash === '#work');
+        if (navContact) navContact.classList.toggle('active', hash === '#contact');
+      }
+    }
+
+    window.addEventListener('hashchange', updateRoute);
+    window.addEventListener('DOMContentLoaded', updateRoute);
+  </script>
+
+</body>
+</html>
